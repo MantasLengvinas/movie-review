@@ -15,26 +15,30 @@ import Header from './components/partials/Header';
 
 class App extends Component {
   render(){
-
-    if(UserStore.loading){
-      return <LoadingScreen />
+    let loginStatus = localStorage.getItem("isLoggedIn");
+    if(loginStatus === "true" || UserStore.isLoggedIn){
+      return (
+        <Router>
+          <Header
+            email={localStorage.getItem("email")}  
+          />
+          <Switch>
+            <Route path="/" component={Home} />
+          </Switch>
+        </Router>
+      );
     }
     else{
-      if(UserStore.isLoggedIn){
-        return <Home />
-      }
-      else{
-        return (
-          <Router>
-            <Header />
-              <Switch>
-                <Route path="/" exact component={Welcome} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-              </Switch>
-          </Router>
-        );
-      }
+      return (
+        <Router>
+          <Header />
+            <Switch>
+              <Route path="/" exact component={Welcome} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+            </Switch>
+        </Router>
+      );
     }
   }
 }

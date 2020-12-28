@@ -1,63 +1,63 @@
 import React, { Component } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 
-import lord_of_war from '../images/lord_of_war.jpg'
-import bloodshot from '../images/bloodshot.jpg'
-import project_power from '../images/Project_power.jpeg'
-import underwater from '../images/underwater.jpg'
-import tenet from '../images/tenet.jpg'
+import avengers from '../images/avengers.jpg'
+import spiderman from '../images/spiderman.jpg'
+import deadpool from '../images/deadpool.jpg'
+import hercules from '../images/hercules.jpg'
+import godzilla from '../images/godzilla.jpg'
 
 class WelcomeScreen extends Component {
   render(){
     return (
-        <div className="row">
-          <div className="col-md d-flex justify-content-start ">          
-            <Carousel interval={5000} keyboard={false} pauseOnHover={true}>  
-              <Carousel.Item style={{'height':"480px", 'width':"360px"}} >  
-                <img style={{'height':"480px", 'width':"360px"}}  
+        <div className="row">        
+            <Carousel interval={4000} keyboard={true} className="full-width">  
+              <Carousel.Item style={{'height':"100vh", 'width':"inherit"}} >  
+                <img style={{'height':"100%", 'width':"inherit"}}  
                   className="d-block w-100"
-                  src={lord_of_war} alt=""  />  
+                  src={spiderman} alt=""  /> 
                 <Carousel.Caption>  
-                  <h3>{}</h3>  
+                <h1>Sveiki atvykę!</h1>
+                    <h3>Norint vertinti filmus, prašome prisijungti</h3>  
                 </Carousel.Caption>  
               </Carousel.Item> 
-              <Carousel.Item style={{'height':"480px", 'width':"360px"}} >  
-                <img style={{'height':"480px", 'width':"360px"}}  
+              <Carousel.Item style={{'height':"100vh", 'width':"inherit"}} >  
+                <img style={{'height':"100%", 'width':"inherit"}}  
                   className="d-block w-100"
-                  src={bloodshot} alt="" />  
+                  src={deadpool} alt="" />  
                 <Carousel.Caption>  
-                  <h3>{}</h3>  
+                    <h1>Sveiki atvykę!</h1>
+                    <h3>Norint vertinti filmus, prašome prisijungti</h3>  
                 </Carousel.Caption>  
               </Carousel.Item>
-              <Carousel.Item style={{'height':"480px", 'width':"360px"}} >  
-                <img style={{'height':"480px", 'width':"360px"}}  
+              <Carousel.Item style={{'height':"100vh", 'width':"inherit"}} >  
+                <img style={{'height':"100%", 'width':"inherit"}}  
                   className="d-block w-100"
-                  src={project_power} alt="" />  
+                  src={avengers} alt="" />  
                 <Carousel.Caption>  
-                  <h3>{}</h3>  
+                <h1>Sveiki atvykę!</h1>
+                    <h3>Norint vertinti filmus, prašome prisijungti</h3> 
                 </Carousel.Caption>  
               </Carousel.Item>
-              <Carousel.Item style={{'height':"480px", 'width':"360px"}} >  
-                <img style={{'height':"480px", 'width':"360px"}}  
+              <Carousel.Item style={{'height':"100vh", 'width':"inherit"}} >  
+                <img style={{'height':"100vh", 'width':"inherit"}}  
                   className="d-block w-100"
-                  src={underwater} alt="" />  
+                  src={hercules} alt="" />  
                 <Carousel.Caption>  
-                  <h3>{}</h3>  
+                <h1>Sveiki atvykę!</h1>
+                    <h3>Norint vertinti filmus, prašome prisijungti</h3> 
                 </Carousel.Caption>  
               </Carousel.Item> 
-              <Carousel.Item style={{'height':"480px", 'width':"360px"}} >  
-                <img style={{'height':"480px", 'width':"360px"}}  
+              <Carousel.Item style={{'height':"100vh", 'width':"inherit"}} >  
+                <img style={{'height':"100vh", 'width':"inherit"}}  
                   className="d-block w-100"
-                  src={tenet} alt="" />  
+                  src={godzilla} alt="" />  
                 <Carousel.Caption>  
-                  <h3>{}</h3>  
+                <h1>Sveiki atvykę!</h1>
+                    <h3>Norint vertinti filmus, prašome prisijungti</h3>  
                 </Carousel.Caption>  
-              </Carousel.Item>        
+              </Carousel.Item>         
             </Carousel>
-          </div>
-          <div className="col-md-8 m-2 welcome-text">
-            <h1>Sveiki atvykę!</h1>
-          </div>
         </div>
     );
   }

@@ -2,14 +2,32 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: white;
 }
 
 .fts {
   margin: 0 -30px 0 -15px !important;
 }
 
+.red {
+  color: red;
+}
+
+.color-white {
+  color: white;
+}
+
+.margin-top {
+  margin-top: 150px;
+}
+
 .full-width {
   width: 100% !important;
+}
+
+body {
+  background-image: url('/src/components/images/background.jpg');
+  background-color: black !important;
 }
 
 /* Pages */
@@ -24,10 +42,7 @@
 /* Partials */
 
 .headerPartial {
-  height: 80px;
-  background-color: rgb(24, 25, 53);
-  color: #fff;
-  overflow: hidden;
+
 }
 
 .header-auth-list {

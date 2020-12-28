@@ -15,7 +15,24 @@ class RegisterScreen extends Component {
 }
 
 handleSubmit(event) {
-    console.log(this.state.email);
+    fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+      }),
+    })
+    .then((res) => res.json())
+    .then(async (data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      
+    });
     event.preventDefault();
 }
 
@@ -27,7 +44,7 @@ handleChange(event) {
 render(){
     return (
         <div className="row">
-          <div className="col d-flex justify-content-center mt-5">
+          <div className="col d-flex justify-content-center margin-top color-white">
             <form onSubmit={this.handleSubmit} className="border border-dark rounded p-5">
               <div className="col d-flex justify-content-center">
                 <h4>REGISTRACIJA</h4>

@@ -5,7 +5,7 @@ class HomeScreen extends Component {
   render(){
     return (
       <div className="homeScreen">
-        <Header />
+        Labas
       </div>
     );
   }
