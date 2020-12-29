@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 
-import UserStore from '../../stores/UserStore'
 import logo from '../images/logo.png'
 
 class Header extends Component {
   render(){
+
+    let logout = () => {
+        localStorage.clear();
+        window.location.replace("/");
+    }
 
     if(localStorage.getItem("isLoggedIn") !== "true"){
         return (
@@ -45,7 +49,21 @@ class Header extends Component {
                     </Link>
                 </div>
             <div className="col-sm-4 m-auto d-flex justify-content-end">
-                <h5>Welcome, {this.props.email}</h5>
+                <h5 className="pr-3 pt-1 border-right border-light">Welcome, {this.props.username}</h5>
+                <Link to="/reviews">
+                    <button
+                        className="global-button mt-auto ml-3"
+                        >
+                        Your reviews
+                    </button>
+                </Link>
+                <button
+                    className="global-button mt-auto ml-3"
+                    id="register-button"
+                    onClick={logout}
+                    >
+                    Logout
+                </button>
             </div>
         </div>
         );

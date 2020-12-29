@@ -24,12 +24,20 @@ handleSubmit(event) {
       },
       body: JSON.stringify({
         email: this.state.email,
+        username: this.state.username,
         password: this.state.password,
       }),
     })
     .then((res) => res.json())
     .then(async (data) => {
-      console.log(data);
+      if(data.success){
+        window.location.replace("/login?success");
+      }
+      else{
+        this.setState({
+          registrationErrors: "Toks vartotojas jau registruotas!"
+        })
+      }
     })
     .catch((err) => {
       console.log(err);
@@ -50,6 +58,9 @@ render(){
               <div className="col d-flex justify-content-center">
                 <h4>REGISTRACIJA</h4>
               </div>
+              <div className="col d-flex justify-content-center">
+              <p className="red">{this.state.registrationErrors}</p>
+            </div>
               <div className="form-group">
                 <label for="exampleInputEmail1">Elektroninio pašto adresas</label>
                 <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="El. paštas" value={this.state.email} onChange={this.handleChange} required />

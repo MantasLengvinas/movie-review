@@ -10,10 +10,10 @@ import MovieScreen from './components/screens/Movie';
 import Welcome from './components/screens/Welcome';
 import Login from './components/screens/Login'
 import Register from './components/screens/Register'
+import Reviews from './components/screens/Reviews';
 
 import UserStore from './stores/UserStore'
 import Header from './components/partials/Header';
-
 
 class App extends Component {
   render(){
@@ -22,10 +22,11 @@ class App extends Component {
       return (
         <Router>
           <Header
-            email={localStorage.getItem("email")}  
+            username={localStorage.getItem("username")}  
           />
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/reviews" component={Reviews} />
             <Route path="/movie/:movieID" component={MovieScreen} />
           </Switch>
         </Router>

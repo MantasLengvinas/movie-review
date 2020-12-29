@@ -18,6 +18,7 @@ class HomeScreen extends Component {
     fetch("https://api.themoviedb.org/3/discover/movie?api_key=530c56d37a8200c3cb27b16bcc2e444c")
       .then((res) => res.json())
       .then((data) => {
+        localStorage.setItem("movieDataString", JSON.stringify(data))
         this.setState({
           movieData: data.results
         })
@@ -25,7 +26,15 @@ class HomeScreen extends Component {
   }
 
   componentDidMount(){
-    this.getMoviesData();
+    if(localStorage.getItem("movieDataString") === null){
+      this.getMoviesData();
+    }
+    else{
+      let mdj = JSON.parse(localStorage.getItem("movieDataString"))
+      this.setState({
+        movieData: mdj.results
+      })
+    }
   }
 
   render(){

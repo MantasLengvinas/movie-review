@@ -31,10 +31,12 @@ handleSubmit(event) {
     })
       .then((res) => res.json())
       .then(async (data) => {
+        console.log(data);
         if(data.success){
           localStorage.setItem("isLoggedIn", true);
           localStorage.setItem("email", data.email);
           localStorage.setItem("username", data.username);
+          localStorage.setItem("token", data.authenticationToken);
           UserStore.isLoggedIn = true;
           window.location.replace("/");
         }

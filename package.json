@@ -13,6 +13,7 @@
     "mobx-react": "^7.0.5",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
+    "react-cookie": "^4.0.3",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-script-tag": "^1.1.2",

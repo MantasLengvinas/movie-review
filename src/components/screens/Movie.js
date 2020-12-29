@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router";
 
-let score = 5;
+let rating = 5;
 
 class Rating extends React.Component {
   
@@ -20,7 +20,7 @@ class Rating extends React.Component {
     handleOptionChange(e) {
         this.setState({ currentR: e.target.value }, () => {
             this.renderRatings()
-            score = this.state.currentR;
+            rating = this.state.currentR;
         });
     }
   
@@ -30,7 +30,7 @@ class Rating extends React.Component {
       let rButtons = [];
       for(var i = 1; i <= rscale; i++){
         rButtons.push(<label key={i}>
-              <input type="radio" value={i} name="rad" className="invisible" checked={currentR == "value"+i} onChange={this.handleOptionChange} /><span style={{"color": "#fff1b5"}} className="fa fa-star"></span>
+              <input type="radio" value={i} name="rad" className="invisible" checked={currentR === "value"+i} onChange={this.handleOptionChange} /><span style={{"color": "#fff1b5"}} className="fa fa-star"></span>
             </label>
         );
       }
@@ -88,7 +88,28 @@ class Movie extends Component{
     // https://api.themoviedb.org/3/movie/733317?api_key=530c56d37a8200c3cb27b16bcc2e444c
 
     handleSubmit(event) {
-        console.log(score);
+        let data = {
+            "email": localStorage.getItem("email"),
+            "movieId": this.props.match.params.movieID,
+            "review": this.state.review,
+            "rating": rating
+        };
+        fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/movies/addMovie", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Authorization": "Bearer "+localStorage.getItem("token")
+            },
+            body: JSON.stringify(data),
+          })
+          .then((res) => res.json())
+          .then(async (data) => {
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         event.preventDefault();
       }
 
@@ -131,13 +152,13 @@ class Movie extends Component{
                                     {this.state.movie.original_title}
                                 </h3>
                                 <p>
+                                    Released: <i>{this.state.movie.release_date}</i>
+                                </p>
+                                <p>
                                     Homepage: <i><a target="_blank" href={this.state.movie.homepage}>{this.state.movie.homepage}</a></i>
                                 </p>
                                 <p>
                                     Overview: <i>{this.state.movie.overview}</i>
-                                </p>
-                                <p>
-                                    Released: <i>{this.state.movie.release_date}</i>
                                 </p>
                             </div>
                         </div>
