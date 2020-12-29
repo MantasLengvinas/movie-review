@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "./static/css/main.c20064eb.chunk.css",
+    "main.js": "./static/js/main.c4482051.chunk.js",
+    "main.js.map": "./static/js/main.c4482051.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.5a9eb6c7.js",
+    "runtime-main.js.map": "./static/js/runtime-main.5a9eb6c7.js.map",
+    "static/css/2.20aa2d7b.chunk.css": "./static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.4c531e62.chunk.js": "./static/js/2.4c531e62.chunk.js",
+    "static/js/2.4c531e62.chunk.js.map": "./static/js/2.4c531e62.chunk.js.map",
+    "static/js/3.809798dd.chunk.js": "./static/js/3.809798dd.chunk.js",
+    "static/js/3.809798dd.chunk.js.map": "./static/js/3.809798dd.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/2.20aa2d7b.chunk.css.map": "./static/css/2.20aa2d7b.chunk.css.map",
+    "static/css/main.c20064eb.chunk.css.map": "./static/css/main.c20064eb.chunk.css.map",
+    "static/js/2.4c531e62.chunk.js.LICENSE.txt": "./static/js/2.4c531e62.chunk.js.LICENSE.txt",
+    "static/media/avengers.612cadbe.jpg": "./static/media/avengers.612cadbe.jpg",
+    "static/media/App.css": "./static/media/background.b85f31be.jpg",
+    "static/media/deadpool.f22d7d34.jpg": "./static/media/deadpool.f22d7d34.jpg",
+    "static/media/godzilla.afc90c13.jpg": "./static/media/godzilla.afc90c13.jpg",
+    "static/media/hercules.9e4faef8.jpg": "./static/media/hercules.9e4faef8.jpg",
+    "static/media/spiderman.7d07dcb0.jpg": "./static/media/spiderman.7d07dcb0.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5a9eb6c7.js",
+    "static/css/2.20aa2d7b.chunk.css",
+    "static/js/2.4c531e62.chunk.js",
+    "static/css/main.c20064eb.chunk.css",
+    "static/js/main.c4482051.chunk.js"
+  ]
+}
