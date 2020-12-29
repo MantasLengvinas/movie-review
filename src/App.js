@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import {observer} from 'mobx-react'
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, useRouteMatch} from 'react-router-dom'
 
 
 import LoadingScreen from './components/screens/Loading';
 import Home from './components/screens/Home';
+import MovieScreen from './components/screens/Movie';
 import Welcome from './components/screens/Welcome';
 import Login from './components/screens/Login'
 import Register from './components/screens/Register'
 
 import UserStore from './stores/UserStore'
 import Header from './components/partials/Header';
+
 
 class App extends Component {
   render(){
@@ -23,7 +25,8 @@ class App extends Component {
             email={localStorage.getItem("email")}  
           />
           <Switch>
-            <Route path="/" component={Home} />
+            <Route path="/" exact component={Home} />
+            <Route path="/movie/:movieID" component={MovieScreen} />
           </Switch>
         </Router>
       );

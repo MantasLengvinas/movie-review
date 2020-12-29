@@ -34,8 +34,9 @@ handleSubmit(event) {
         if(data.success){
           localStorage.setItem("isLoggedIn", true);
           localStorage.setItem("email", data.email);
+          localStorage.setItem("username", data.username);
           UserStore.isLoggedIn = true;
-          window.location.replace("/")
+          window.location.replace("/");
         }
         else{
           this.setState({

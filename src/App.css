@@ -14,7 +14,14 @@
 }
 
 .color-white {
-  color: white;
+  color: white ;
+}
+.color-blac {
+  color: black;
+}
+
+.black-outline {
+  -webkit-text-stroke: 1px black !important;
 }
 
 .margin-top {
@@ -30,6 +37,10 @@ body {
   background-color: black !important;
 }
 
+option {
+  color: #000;
+}
+
 /* Pages */
 
 .welcome-text {
@@ -40,10 +51,6 @@ body {
 /* Pages */
 
 /* Partials */
-
-.headerPartial {
-
-}
 
 .header-auth-list {
   display: inline-flex;
@@ -57,6 +64,43 @@ body {
 .header-logo {
   cursor: pointer;
 }
+
+/* .rating_scale {
+  display: block;
+  text-align: center;
+  font-size: 0;
+  font-weight: 500;
+}*/
+ .rating_scale label {
+  cursor: pointer;
+  font-size: 28px;
+}/*
+.rating_scale span {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0.5em 1em;
+  font-size: 16px;
+  color: #fff;
+  border-top: solid 1px #fff;
+  border-bottom: solid 1px #fff;
+  border-right: solid 1px #fff;
+}
+.rating_scale label:first-child span {
+  border-left: solid 1px #fff;
+  border-top-left-radius: 0.25em;
+  border-bottom-left-radius: 0.25em;
+}
+.rating_scale label:last-child span {
+  border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
+}
+.rating_scale input[type="radio"] {
+  display: none;
+} */
+.rating_scale input[type="radio"]:checked span {
+  background-color: rgb(255, 236, 153);
+  color: black;
+} 
 
 /* Partials */
 
@@ -84,6 +128,7 @@ body {
   border: solid 1px rgb(207, 207, 207);
   border-radius: 25px;
   padding-bottom: 5px;
+  color: #FFF;
 }
 
 #register-button:hover {

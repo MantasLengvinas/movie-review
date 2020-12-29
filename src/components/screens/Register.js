@@ -6,6 +6,7 @@ class RegisterScreen extends Component {
 
     this.state = {
         email: "",
+        username: "",
         password: "",
         registrationErrors: ""
     }
@@ -31,7 +32,7 @@ handleSubmit(event) {
       console.log(data);
     })
     .catch((err) => {
-      
+      console.log(err);
     });
     event.preventDefault();
 }
@@ -45,7 +46,7 @@ render(){
     return (
         <div className="row">
           <div className="col d-flex justify-content-center margin-top color-white">
-            <form onSubmit={this.handleSubmit} className="border border-dark rounded p-5">
+            <form onSubmit={this.handleSubmit} className="border border-light rounded p-5">
               <div className="col d-flex justify-content-center">
                 <h4>REGISTRACIJA</h4>
               </div>
@@ -53,6 +54,10 @@ render(){
                 <label for="exampleInputEmail1">Elektroninio pašto adresas</label>
                 <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="El. paštas" value={this.state.email} onChange={this.handleChange} required />
                 <small id="emailHelp" className="form-text text-muted">Jūsų el. paštas bus reikalingas norint prisijungti</small>
+              </div>
+              <div className="form-group">
+                <label for="exampleInputPassword1">Vartotojo vardas</label>
+                <input type="text" name="username" value={this.state.username} onChange={this.handleChange} required className="form-control" id="exampleInputUsername" placeholder="Vartotojo vardas" />
               </div>
               <div className="form-group">
                 <label for="exampleInputPassword1">Slaptažodis</label>

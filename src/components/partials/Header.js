@@ -21,7 +21,7 @@ class Header extends Component {
                             className="global-button"
                             id="login-button"
                             >
-                            Prisijungti
+                            Sign in
                         </button>
                     </Link>
                     <Link to="/register">
@@ -29,7 +29,7 @@ class Header extends Component {
                             className="global-button"
                             id="register-button"
                             >
-                            Registruotis
+                            Sign up
                         </button>
                     </Link>
                 </div>
@@ -39,11 +39,13 @@ class Header extends Component {
     else{
         return (
             <div className="headerPartial row">
-            <div className="col-sm-8 pl-5">
-                <img src={logo} alt="logo" srcset=""/>
-            </div>
+                <div className="col-sm-8 pl-1 header-logo">
+                    <Link to="/">
+                        <img src={logo} alt="logo" srcset=""/>
+                    </Link>
+                </div>
             <div className="col-sm-4 m-auto d-flex justify-content-end">
-                Sveiki, {this.props.email}
+                <h5>Welcome, {this.props.email}</h5>
             </div>
         </div>
         );
