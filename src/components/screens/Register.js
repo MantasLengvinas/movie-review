@@ -35,7 +35,7 @@ handleSubmit(event) {
       }
       else{
         this.setState({
-          registrationErrors: "Toks vartotojas jau registruotas!"
+          registrationErrors: "User with given credentials already exists"
         })
       }
     })
@@ -56,26 +56,26 @@ render(){
           <div className="col d-flex justify-content-center margin-top color-white">
             <form onSubmit={this.handleSubmit} className="border border-light rounded p-5">
               <div className="col d-flex justify-content-center">
-                <h4>REGISTRACIJA</h4>
+                <h4>SIGN UP</h4>
               </div>
               <div className="col d-flex justify-content-center">
               <p className="red">{this.state.registrationErrors}</p>
             </div>
               <div className="form-group">
-                <label for="exampleInputEmail1">Elektroninio pašto adresas</label>
-                <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="El. paštas" value={this.state.email} onChange={this.handleChange} required />
-                <small id="emailHelp" className="form-text text-muted">Jūsų el. paštas bus reikalingas norint prisijungti</small>
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
+                <small id="emailHelp" className="form-text text-muted">Email is required for authentication</small>
               </div>
               <div className="form-group">
-                <label for="exampleInputPassword1">Vartotojo vardas</label>
-                <input type="text" name="username" value={this.state.username} onChange={this.handleChange} required className="form-control" id="exampleInputUsername" placeholder="Vartotojo vardas" />
+                <label for="exampleInputPassword1">Username</label>
+                <input type="text" name="username" value={this.state.username} onChange={this.handleChange} required className="form-control" id="exampleInputUsername" placeholder="Username" />
               </div>
               <div className="form-group">
-                <label for="exampleInputPassword1">Slaptažodis</label>
-                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required className="form-control" id="exampleInputPassword1" placeholder="Slaptažodis" />
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required className="form-control" id="exampleInputPassword1" placeholder="Password" />
               </div>
               <div className="col-md-12 d-flex justify-content-center">
-                <button type="submit" className="btn btn-primary full-width ">REGISTRUOTIS</button>
+                <button type="submit" className="btn btn-primary full-width ">SIGN UP</button>
               </div>
             </form>
           </div>

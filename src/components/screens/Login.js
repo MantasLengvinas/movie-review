@@ -42,7 +42,7 @@ handleSubmit(event) {
         }
         else{
           this.setState({
-            loginError: "Neteisingi prisijungimo duomenys!"
+            loginError: "Entered credentials are incorrect!"
           })
         }
       })
@@ -63,21 +63,21 @@ render(){
       <div className="col d-flex justify-content-center margin-top">
         <form onSubmit={this.handleSubmit} className="border border-light rounded p-5">
           <div className="col d-flex justify-content-center color-white">
-            <h4>PRISIJUNGIMAS</h4>
+            <h4>SIGN IN</h4>
           </div>
           <div className="col d-flex justify-content-center">
             <p className="red">{this.state.loginError}</p>
           </div>
           <div className="form-group">
-            <label for="exampleInputEmail1" className="color-white">Elektroninio pašto adresas</label>
-            <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="El. paštas" value={this.state.email} onChange={this.handleChange} required />
+            <label for="exampleInputEmail1" className="color-white">Email adress</label>
+            <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
           </div>
           <div className="form-group">
-            <label for="exampleInputPassword1" className="color-white">Slaptažodis</label>
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required className="form-control" id="exampleInputPassword1" placeholder="Slaptažodis" />
+            <label for="exampleInputPassword1" className="color-white">Password</label>
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} required className="form-control" id="exampleInputPassword1" placeholder="Password" />
           </div>
           <div className="col-md-12 d-flex justify-content-center">
-            <button type="submit" className="btn btn-primary full-width ">PRISIJUNGTI</button>
+            <button type="submit" className="btn btn-primary full-width ">SIGN IN</button>
           </div>
         </form>
       </div>
