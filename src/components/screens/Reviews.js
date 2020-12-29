@@ -25,8 +25,13 @@ class Reviews extends Component {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
-        })
+                this.setState({
+                    reviewsData: data
+                })
+            })
+        .catch((err) => {
+            console.log(err);
+          });
     }
 
     componentDidMount(){
@@ -37,34 +42,6 @@ class Reviews extends Component {
 
         let allMoviesFull = JSON.parse(localStorage.getItem("movieDataString"));
         let allMovies = allMoviesFull.results;
-
-        this.state.reviewsData = [
-            {
-                "id": 1,
-                "movieID": "464052",
-                "review": "not that bad",
-                "rating": 3
-            },
-            {
-                "id": 2,
-                "movieID": "524047",
-                "review": "belekas",
-                "rating": 4
-            },
-            {
-                "id": 1,
-                "movieID": "634244",
-                "review": "Super",
-                "rating": 5
-            },
-            {
-                "id": 2,
-                "movieID": "529203",
-                "review": "hujne totali",
-                "rating": 1
-            }
-        ]
-
 
         let reviews = this.state.reviewsData.map(review => {
             var currMovie = allMovies.find(m => {

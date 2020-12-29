@@ -43,12 +43,12 @@ class Header extends Component {
     else{
         return (
             <div className="headerPartial row">
-                <div className="col-sm-8 pl-1 header-logo">
+                <div className="col-sm-4 pl-1 header-logo">
                     <Link to="/">
                         <img src={logo} alt="logo" srcset=""/>
                     </Link>
                 </div>
-            <div className="col-sm-4 m-auto d-flex justify-content-end">
+            <div className="col-sm-8 m-auto d-flex justify-content-end">
                 <h5 className="pr-3 pt-1 border-right border-light">Welcome, {this.props.username}</h5>
                 <Link to="/reviews">
                     <button

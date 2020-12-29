@@ -75,7 +75,8 @@ class Movie extends Component{
             .then((res) => res.json())
             .then((data) => {
                 this.setState({
-                    movie: data
+                    movie: data,
+                    response: ""
                 })
         })
     }
@@ -105,7 +106,14 @@ class Movie extends Component{
           })
           .then((res) => res.json())
           .then(async (data) => {
-            console.log(data);
+            if(data.success){
+                this.setState({
+                    response: "Your review has been saved!"
+                })
+                setInterval(()=>{
+                    window.location.replace("/?rateSuccess");
+                }, 2500)
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -134,8 +142,8 @@ class Movie extends Component{
                     </button>
                 </div>
                 <div className="col-md d-flex justify-content-center">
-                    <h3 className="black-outline">
-                        
+                    <h3 className="black-outline red">
+                        {this.state.response}
                     </h3>
                 </div>
             </div>
