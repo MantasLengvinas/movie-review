@@ -61,15 +61,28 @@ class Movie extends Component{
         super(props);
     
         this.state = {
-            review: ""
+            review: "",
+            movie: {}
         }
-    
+        
+        this.movieData = this.movieData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
+    movieData(id){
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=530c56d37a8200c3cb27b16bcc2e444c`)
+            .then((res) => res.json())
+            .then((data) => {
+                this.setState({
+                    movie: data
+                })
+        })
+    }
+
     componentDidMount() {
         const id = this.props.match.params.movieID;
+        this.movieData(id)
     }
 
     // https://api.themoviedb.org/3/movie/733317?api_key=530c56d37a8200c3cb27b16bcc2e444c
@@ -91,7 +104,6 @@ class Movie extends Component{
             window.location.replace("/");
         }
 
-        const id = this.props.match.params.movieID;
         return (
         <div className="container">
             <div className="row">
@@ -110,25 +122,22 @@ class Movie extends Component{
                 <div className="col-md">
                     <div className="row mt-3">
                         <div className="col-md-5">
-                            <img src="https://image.tmdb.org/t/p/w500/z15NpieRw7jL7bKoICwLO5j7FgZ.jpg" alt="movie" className="m-3" style={{'height':"330px", 'width':"450px"}}srcset=""/>
-                            <p className="ml-3">Current rating: </p>
+                            <img src={`https://image.tmdb.org/t/p/w500${this.state.movie.backdrop_path}`} alt="movie" className="m-3" style={{'height':"330px", 'width':"450px"}}srcset=""/>
+                            <p className="ml-3">Current rating: <i>{this.state.movie.vote_average}/10</i> </p>
                         </div>
                         <div className="col-md-7">
                             <div className="col m-1 ml-1">
                                 <h3 className="black-outline">
-                                    Movie title
+                                    {this.state.movie.original_title}
                                 </h3>
                                 <p>
-                                    Genre:
+                                    Homepage: <i><a target="_blank" href={this.state.movie.homepage}>{this.state.movie.homepage}</a></i>
                                 </p>
                                 <p>
-                                    Released:
+                                    Overview: <i>{this.state.movie.overview}</i>
                                 </p>
                                 <p>
-                                    Language:
-                                </p>
-                                <p>
-                                    Overview:
+                                    Released: <i>{this.state.movie.release_date}</i>
                                 </p>
                             </div>
                         </div>
