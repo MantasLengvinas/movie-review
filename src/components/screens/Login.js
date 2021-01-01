@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import $ from 'jquery'
 
 import UserStore from '../../stores/UserStore'
 
@@ -18,6 +19,7 @@ class LoginScreen extends Component {
 }
 
 handleSubmit(event) {
+  $('#loader,#loading-text').toggleClass('loaded');
   fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/auth/login", {
       method: "POST",
       headers: {
@@ -31,12 +33,12 @@ handleSubmit(event) {
     })
       .then((res) => res.json())
       .then(async (data) => {
-        console.log(data);
         if(data.success){
           localStorage.setItem("isLoggedIn", true);
           localStorage.setItem("email", data.email);
           localStorage.setItem("username", data.username);
           localStorage.setItem("token", data.authenticationToken);
+          $('#loader,#loading-text').toggleClass('loaded');
           UserStore.isLoggedIn = true;
           window.location.replace("/");
         }

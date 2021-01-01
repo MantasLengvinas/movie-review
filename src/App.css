@@ -5,12 +5,31 @@
   color: white;
 }
 
+.loading{
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111111;
+  opacity: 0.8;
+  transition: all 0.5s;
+  z-index: 1000;
+}
+
+.loaded {
+  opacity: 0;
+  display: none;
+}
+
 .fts {
   margin: 0 -30px 0 -15px !important;
 }
 
 .red {
-  color: red;
+  color: red !important;
+  border-color: red !important;
 }
 
 .color-white {
@@ -134,6 +153,19 @@ option {
 #register-button:hover {
   color: rgb(148, 148, 148);
   border-color: rgb(148, 148, 148);
+}
+.user-btn:hover {
+  text-decoration: underline rgb(148, 148, 148);
+  color: rgb(148, 148, 148);
+}
+
+.text-link {
+  cursor: pointer;
+}
+
+.text-link:hover {
+  color: rgb(148, 148, 148);
+  text-decoration: underline;
 }
 
 /* Objects */

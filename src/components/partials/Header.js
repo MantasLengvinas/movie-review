@@ -49,7 +49,9 @@ class Header extends Component {
                     </Link>
                 </div>
             <div className="col-sm-8 m-auto d-flex justify-content-end">
-                <h5 className="pr-3 pt-1 border-right border-light">Welcome, {this.props.username}</h5>
+                <Link to="/user" style={{"textDecoration": "none"}}>
+                    <h5 className="pr-3 pt-1 border-right border-light user-btn">Welcome, {this.props.username}</h5>
+                </Link>
                 <Link to="/reviews">
                     <button
                         className="global-button mt-auto ml-3"

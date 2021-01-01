@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import $ from 'jquery'
 
 class Reviews extends Component {
     constructor(props){
@@ -12,6 +13,7 @@ class Reviews extends Component {
     }
 
     getReviews(){
+        $('#loader,#loading-text').toggleClass('loaded');
         fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/movies/getMovies", {
             method: "POST",
             headers: {
@@ -28,6 +30,7 @@ class Reviews extends Component {
                 this.setState({
                     reviewsData: data
                 })
+                $('#loader,#loading-text').toggleClass('loaded');
             })
         .catch((err) => {
             console.log(err);

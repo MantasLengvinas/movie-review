@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from "react-router";
+import $ from "jquery";
 
 let rating = 5;
 
@@ -89,6 +90,7 @@ class Movie extends Component{
     // https://api.themoviedb.org/3/movie/733317?api_key=530c56d37a8200c3cb27b16bcc2e444c
 
     handleSubmit(event) {
+        $('#loader,#loading-text').toggleClass('loaded');
         let data = {
             "email": localStorage.getItem("email"),
             "movieId": this.props.match.params.movieID,
@@ -107,6 +109,7 @@ class Movie extends Component{
           .then((res) => res.json())
           .then(async (data) => {
             if(data.success){
+                $('#loader,#loading-text').toggleClass('loaded');
                 this.setState({
                     response: "Your review has been saved!"
                 })
@@ -163,7 +166,7 @@ class Movie extends Component{
                                     Released: <i>{this.state.movie.release_date}</i>
                                 </p>
                                 <p>
-                                    Homepage: <i><a target="_blank" href={this.state.movie.homepage}>{this.state.movie.homepage}</a></i>
+                                    Homepage: <i><a target="_blank" rel="noreferrer" href={this.state.movie.homepage}>{this.state.movie.homepage}</a></i>
                                 </p>
                                 <p>
                                     Overview: <i>{this.state.movie.overview}</i>

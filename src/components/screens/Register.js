@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import $ from 'jquery'
 
 class RegisterScreen extends Component {
   constructor(props){
@@ -16,6 +17,7 @@ class RegisterScreen extends Component {
 }
 
 handleSubmit(event) {
+  $('#loader,#loading-text').toggleClass('loaded');
     fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/auth/signup", {
       method: "POST",
       headers: {
@@ -30,6 +32,7 @@ handleSubmit(event) {
     })
     .then((res) => res.json())
     .then(async (data) => {
+      $('#loader,#loading-text').toggleClass('loaded');
       if(data.success){
         window.location.replace("/login?success");
       }
