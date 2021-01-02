@@ -62,7 +62,7 @@ class UserData extends Component {
     }
 
     deleteAccount(){
-        fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/admin/", {
+        fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/admin/deleteUser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

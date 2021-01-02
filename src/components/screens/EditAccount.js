@@ -66,10 +66,10 @@ class EditAccount extends Component {
                         this.setState({
                             response: "Details have been updated successfully! Please sign in."
                         })
-                        // setInterval(() => {
-                        //     localStorage.clear();
-                        //     window.location.replace("/");
-                        // }, 2000)
+                        setInterval(() => {
+                            localStorage.clear();
+                            window.location.replace("/");
+                        }, 2000)
                     }
                     else{
                         this.setState({
