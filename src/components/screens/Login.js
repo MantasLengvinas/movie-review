@@ -46,6 +46,7 @@ handleSubmit(event) {
           this.setState({
             loginError: "Entered credentials are incorrect!"
           })
+          $('#loader,#loading-text').toggleClass('loaded');
         }
       })
       .catch((err) => {

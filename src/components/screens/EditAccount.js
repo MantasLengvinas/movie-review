@@ -23,50 +23,65 @@ class EditAccount extends Component {
     }
 
     handleSubmit(event){
+        $('#loader,#loading-text').toggleClass('loaded');
+        
+        let newUsername, newEmail;
+
         if(this.state.email === "" && this.state.username === ""){
             this.setState({
-                response: "In order to update your details, you must provide atleast one detail!"
-            })
-            return -1;
-        }
-        $('#loader,#loading-text').toggleClass('loaded');
-
-        if(this.state.email === ""){
-            this.setState({
-                email: localStorage.getItem("email")
+                response: "You must provide atleast one detail!"
             })
         }
-
-        if(this.state.username === ""){
-            this.setState({
-                username: localStorage.getItem("username")
-            })
-        }
-
-    fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/admin/changeUserData", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Authorization": "Bearer "+localStorage.getItem("token")
-        },
-        body: JSON.stringify({
-            newEmail: this.state.email,
-            newUsername: this.state.username,
-        }),
-        })
-        .then((res) => res.json())
-        .then(async (data) => {
-            if(data.success){
-                $('#loader,#loading-text').toggleClass('loaded');
-                this.setState({
-                    response: "Details have been updated successfully!"
-                })
+        else{
+            if(this.state.email !== ""){
+                newEmail = this.state.email;
             }
-        })
-        .catch((err) => {
-            console.log(err);
-        });
+            else{
+                newEmail = localStorage.getItem("email");
+            }
+    
+            if(this.state.username !== ""){
+                newUsername = this.state.username;
+            }
+            else{
+                newUsername = localStorage.getItem("username");
+            }
+
+            fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/admin/changeUserData", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    "Authorization": "Bearer "+localStorage.getItem("token")
+                },
+                body: JSON.stringify({
+                    newEmail: newEmail,
+                    newUsername: newUsername,
+                }),
+                })
+                .then((res) => res.json())
+                .then(async (data) => {
+                    if(data.success){
+                        $('#loader,#loading-text').toggleClass('loaded');
+                        this.setState({
+                            response: "Details have been updated successfully! Please sign in."
+                        })
+                        // setInterval(() => {
+                        //     localStorage.clear();
+                        //     window.location.replace("/");
+                        // }, 2000)
+                    }
+                    else{
+                        this.setState({
+                            response: "Failed to update.. try again later."
+                        })
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+            });
+
+        }
 
         event.preventDefault();
     }

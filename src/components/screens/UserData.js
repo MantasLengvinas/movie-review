@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import $ from "jquery"
 
+import { confirmAlert } from '../customLib/confirmation-alert'; // Import
+import '../customLib/confirmation-alert/index.css';
+
 class UserData extends Component {
 
     constructor(props){
@@ -10,13 +13,15 @@ class UserData extends Component {
             email: "",
             username: "",
             date_created: "",
-            rated_movies: ""
+            rated_movies: "",
+            response: ""
         }
 
         this.getUserData = this.getUserData.bind(this);
         this.redirectToReviews = this.redirectToReviews.bind(this);
         this.editAccount = this.editAccount.bind(this);
         this.deleteAccount = this.deleteAccount.bind(this);
+        this.deleteAccountConfirm = this.deleteAccountConfirm.bind(this);
     }
 
     getUserData(){
@@ -57,7 +62,54 @@ class UserData extends Component {
     }
 
     deleteAccount(){
+        fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/admin/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": "Bearer "+localStorage.getItem("token")
+            },
+            body: JSON.stringify({
+                email: localStorage.getItem("email"),
+            }),
+            })
+            .then((res) => res.json())
+            .then(async (data) => {
+                if(data.success){
+                    $('#loader,#loading-text').toggleClass('loaded');
+                    this.setState({
+                        response: "Account deleted successfully."
+                    })
+                    setInterval(() => {
+                        localStorage.clear();
+                        window.location.replace("/");
+                    }, 2000)
+                }
+                else{
+                    this.setState({
+                        response: "Failed to delete.. try again later."
+                    })
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+        });
+    }
 
+    deleteAccountConfirm(){
+        confirmAlert({
+            title: 'Delete your account?',
+            message: 'Deleted account cannot be restored!',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => this.deleteAccount()
+              },
+              {
+                label: 'No'
+              }
+            ]
+        });
     }
 
     componentDidMount(){
@@ -88,6 +140,7 @@ class UserData extends Component {
                     <div className="col-md-8 border border-light">
                         <div className="row mt-3">
                             <div className="col">
+                                <h5 className="red ml-3">{this.state.response}</h5>
                                 <h3 className="black-outline ml-3">
                                     {this.state.username}
                                 </h3>
@@ -117,7 +170,7 @@ class UserData extends Component {
                                 <button onClick={this.editAccount} className="global-button" id="register-button">
                                     Edit account
                                 </button>
-                                <button onClick={this.deleteAccount} className="global-button red" id="register-button">
+                                <button onClick={this.deleteAccountConfirm} className="global-button red" id="register-button">
                                     Delete account
                                 </button>
                             </div>
