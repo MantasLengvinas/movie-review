@@ -143,6 +143,9 @@ class Movie extends Component{
                     window.location.replace("/?rateSuccess");
                 }, 2500)
             }
+            else{
+                alert("You cannot review same movie twice!");
+            }
           })
           .catch((err) => {
             $('#loader,#loading-text').toggleClass('loaded');

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Carousel from 'react-bootstrap/Carousel'
 import { Link } from 'react-router-dom'
+import $ from 'jquery'
 
 class HomeScreen extends Component {
 
@@ -10,10 +11,12 @@ class HomeScreen extends Component {
     this.key = Math.floor(Math.random() * (499 - 1 + 1)) + 1;
 
     this.state = {
-      movieData: []
+      movieData: [],
+      searchedMovie: ""
     }
 
     this.getMoviesData = this.getMoviesData.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   getMoviesData() {
@@ -24,6 +27,12 @@ class HomeScreen extends Component {
         this.setState({
           movieData: data.results
         })
+    })
+  }
+
+  handleChange(event){
+    this.setState({
+      [event.target.name]: event.target.value
     })
   }
 
@@ -41,6 +50,8 @@ class HomeScreen extends Component {
 
   render(){
 
+    
+
     const movieList = this.state.movieData.map(movie =>
       <div className="carousel-item">
         <Link to={`/movie/${movie.id}`}>
@@ -56,11 +67,30 @@ class HomeScreen extends Component {
       <div className="homeScreen container">
         <div className="row">
           <div className="col-md d-flex justify-content-center">
-            <h3>Select a movie you would like to review</h3>
+            <h3>Search for a movie you would like to review</h3>
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col-md d-flex justify-content-center">
+            <form className="d-inline-flex col-md-8 border-bottom border-light">
+              <div className="form-group col-sm-9">
+                <input type="text" name="searchedMovie" className="form-control" id="searchingMovie" aria-describedby="search" placeholder="Search for a movie" value={this.state.searchedMovie} onChange={this.handleChange} required />
+              </div>
+              <div className="col-sm-3">
+                <Link to={`/searchMovie/${this.state.searchedMovie}`}>
+                  <button type="submit" className="btn btn-primary full-width ">Search</button>
+                </Link>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="row mt-3">
+          <div className="col-md d-flex justify-content-center">
+            <h3>Popular movies to review</h3>
           </div>
         </div>
         <div className="row d-flex justify-content-center">
-          <div className="col-md-8 mt-5 border border-light rounded p-3">
+          <div className="col-md-8 mt-2 border border-light rounded p-3">
             <Carousel keyboard={true} interval={5000}>
               {movieList}
             </Carousel>

@@ -51,6 +51,7 @@ handleSubmit(event) {
       })
       .catch((err) => {
         console.log(err);
+        $('#loader,#loading-text').toggleClass('loaded');
       });
     event.preventDefault();
 }

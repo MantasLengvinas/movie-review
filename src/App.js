@@ -14,6 +14,7 @@ import EditAccount from './components/screens/EditAccount';
 
 import UserStore from './stores/UserStore'
 import Header from './components/partials/Header';
+import SearchMovie from './components/screens/SearchMovie';
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path="/editAccount" component={EditAccount} />
             <Route path="/reviews" component={Reviews} />
             <Route path="/movie/:movieID" component={MovieScreen} />
+            <Route path="/searchMovie/:query" component={SearchMovie} />
           </Switch>
         </Router>
       );
