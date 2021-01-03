@@ -146,7 +146,9 @@ class Movie extends Component{
           })
           .catch((err) => {
             $('#loader,#loading-text').toggleClass('loaded');
-            console.log(err);
+            this.setState({
+                response: err
+            })
           });
         
         event.preventDefault();

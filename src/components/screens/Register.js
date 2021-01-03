@@ -33,18 +33,20 @@ handleSubmit(event) {
     .then((res) => res.json())
     .then(async (data) => {
       if(data.success){
+        $('#loader,#loading-text').toggleClass('loaded');
         window.location.replace("/login?success");
       }
       else{
+        $('#loader,#loading-text').toggleClass('loaded');
         this.setState({
           registrationErrors: "User with given credentials already exists"
         })
       }
     })
     .catch((err) => {
+      $('#loader,#loading-text').toggleClass('loaded');
       console.log(err);
     });
-    $('#loader,#loading-text').toggleClass('loaded');
     event.preventDefault();
 }
 

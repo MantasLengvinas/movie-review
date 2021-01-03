@@ -72,12 +72,14 @@ class EditAccount extends Component {
                         }, 2000)
                     }
                     else{
+                        $('#loader,#loading-text').toggleClass('loaded');
                         this.setState({
                             response: "Failed to update.. try again later."
                         })
                     }
                 })
                 .catch((err) => {
+                    $('#loader,#loading-text').toggleClass('loaded');
                     console.log(err);
             });
 
