@@ -7,6 +7,8 @@ class HomeScreen extends Component {
   constructor(props){
     super(props);
 
+    this.key = Math.floor(Math.random() * (499 - 1 + 1)) + 1;
+
     this.state = {
       movieData: []
     }
@@ -15,7 +17,7 @@ class HomeScreen extends Component {
   }
 
   getMoviesData() {
-    fetch("https://api.themoviedb.org/3/discover/movie?api_key=530c56d37a8200c3cb27b16bcc2e444c")
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=530c56d37a8200c3cb27b16bcc2e444c`)
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("movieDataString", JSON.stringify(data))
@@ -44,7 +46,7 @@ class HomeScreen extends Component {
         <Link to={`/movie/${movie.id}`}>
           <img className="d-block w-100" src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="" />
         </Link>
-        <div class="carousel-caption d-none d-md-block">
+        <div className="carousel-caption d-none d-md-block">
           <h2 className="black-outline">{movie.original_title}</h2>
         </div>
       </div>

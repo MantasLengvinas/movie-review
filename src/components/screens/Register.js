@@ -32,7 +32,6 @@ handleSubmit(event) {
     })
     .then((res) => res.json())
     .then(async (data) => {
-      $('#loader,#loading-text').toggleClass('loaded');
       if(data.success){
         window.location.replace("/login?success");
       }
@@ -45,6 +44,7 @@ handleSubmit(event) {
     .catch((err) => {
       console.log(err);
     });
+    $('#loader,#loading-text').toggleClass('loaded');
     event.preventDefault();
 }
 

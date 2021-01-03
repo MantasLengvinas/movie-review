@@ -63,9 +63,11 @@ class Movie extends Component{
     
         this.state = {
             review: "",
-            movie: {}
+            movie: {},
+            movieReviews: []
         }
         
+        this.movieReviews = this.movieReviews.bind(this);
         this.movieData = this.movieData.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -82,8 +84,32 @@ class Movie extends Component{
         })
     }
 
+    movieReviews(id){
+        fetch("https://moviereview-test-1608553173564.azurewebsites.net/api/movies/getReviews", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
+                "Authorization": "Bearer "+localStorage.getItem("token")
+            },
+            body: JSON.stringify({
+                movieID: id
+            }),
+            })
+            .then((res) => res.json())
+            .then(async (data) => {
+                this.setState({
+                    movieReviews: data
+                })
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     componentDidMount() {
         const id = this.props.match.params.movieID;
+        this.movieReviews(id);
         this.movieData(id)
     }
 
@@ -109,7 +135,6 @@ class Movie extends Component{
           .then((res) => res.json())
           .then(async (data) => {
             if(data.success){
-                $('#loader,#loading-text').toggleClass('loaded');
                 this.setState({
                     response: "Your review has been saved!"
                 })
@@ -121,6 +146,7 @@ class Movie extends Component{
           .catch((err) => {
             console.log(err);
           });
+        $('#loader,#loading-text').toggleClass('loaded');
         event.preventDefault();
       }
 
@@ -132,8 +158,31 @@ class Movie extends Component{
 
     render(){
 
+        let reviewList;    
+
         let goBack = () => {
             window.location.replace("/");
+        }
+
+        if(this.state.movieReviews.length > 0){
+            reviewList = this.state.movieReviews.map(review => 
+                <div className="row border border-dark p-3">
+                    <div className="col-md-4">
+                        <h4 className="w-100">
+                            {review.username}
+                        </h4>
+                        <p>
+                            Rating: <i>{review.rating}/5 stars</i>
+                        </p>
+                    </div>
+                    <div className="col-md-8">
+                        <p><i>{review.review}</i></p>
+                    </div>
+                </div>
+            )
+        }
+        else{
+            reviewList = "This movie has no reviews"
         }
 
         return (
@@ -155,7 +204,7 @@ class Movie extends Component{
                     <div className="row mt-3">
                         <div className="col-md-5">
                             <img src={`https://image.tmdb.org/t/p/w500${this.state.movie.backdrop_path}`} alt="movie" className="m-3" style={{'height':"330px", 'width':"450px"}}srcset=""/>
-                            <p className="ml-3">Current rating: <i>{this.state.movie.vote_average}/10</i> </p>
+                            <p className="ml-3">Current global rating: <i>{this.state.movie.vote_average}/10</i> </p>
                         </div>
                         <div className="col-md-7">
                             <div className="col m-1 ml-1">
@@ -172,6 +221,15 @@ class Movie extends Component{
                                     Overview: <i>{this.state.movie.overview}</i>
                                 </p>
                             </div>
+                        </div>
+                    </div>
+                    <div className="row border-top border-light">
+                        <div className="col-md d-flex justify-content-center mt-3">
+                            <h4>What other people think about this movie</h4>
+                        </div>
+                        <div className="w-100"></div>
+                        <div className="col-md mt-3" style={{"max-height": "350px", "overflow": "auto"}}>
+                            {reviewList}
                         </div>
                     </div>
                     <div className="row border-top border-light">
