@@ -138,15 +138,17 @@ class Movie extends Component{
                 this.setState({
                     response: "Your review has been saved!"
                 })
+                $('#loader,#loading-text').toggleClass('loaded');
                 setInterval(()=>{
                     window.location.replace("/?rateSuccess");
                 }, 2500)
             }
           })
           .catch((err) => {
+            $('#loader,#loading-text').toggleClass('loaded');
             console.log(err);
           });
-        $('#loader,#loading-text').toggleClass('loaded');
+        
         event.preventDefault();
       }
 
