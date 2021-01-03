@@ -134,11 +134,11 @@ class Movie extends Component{
           })
           .then((res) => res.json())
           .then(async (data) => {
+            $('#loader,#loading-text').toggleClass('loaded');
             if(data.success){
                 this.setState({
                     response: "Your review has been saved!"
                 })
-                $('#loader,#loading-text').toggleClass('loaded');
                 setInterval(()=>{
                     window.location.replace("/?rateSuccess");
                 }, 2500)
