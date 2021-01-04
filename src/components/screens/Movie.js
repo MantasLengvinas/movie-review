@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { withRouter } from "react-router";
 import $ from "jquery";
 
+import { confirmAlert } from '../customLib/confirmation-alert'; // Import
+import '../customLib/confirmation-alert/index.css';
+
 let rating = 5;
 
 class Rating extends React.Component {
@@ -133,15 +136,29 @@ class Movie extends Component{
           .then(async (data) => {
             $('#loader,#loading-text').toggleClass('loaded');
             if(data.success){
-                this.setState({
-                    response: "Your review has been saved!"
-                })
-                setInterval(()=>{
-                    window.location.replace("/?rateSuccess");
-                }, 2500)
+                confirmAlert({
+                    title: 'Saved!',
+                    message: 'Review has been saved successfully',
+                    warning: false,
+                    buttons: [
+                      {
+                        label: 'Okay',
+                        onClick: () => window.location.replace("/")
+                      }
+                    ]
+                });
             }
             else{
-                alert("You cannot review same movie twice!");
+                confirmAlert({
+                    title: 'Failed!',
+                    message: 'You cannot review same movie twice!',
+                    warning: true,
+                    buttons: [
+                      {
+                        label: 'Okay'
+                      }
+                    ]
+                });
             }
           })
           .catch((err) => {

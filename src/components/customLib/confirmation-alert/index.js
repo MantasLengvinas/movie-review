@@ -105,6 +105,7 @@ var ReactConfirmAlert = (_temp2 = _class = function (_Component) {
       var _props = this.props,
           title = _props.title,
           message = _props.message,
+          warning = _props.warning,
           buttons = _props.buttons,
           childrenElement = _props.childrenElement,
           customUI = _props.customUI;
@@ -124,7 +125,7 @@ var ReactConfirmAlert = (_temp2 = _class = function (_Component) {
           { className: 'react-confirm-alert' },
           customUI ? this.renderCustomUI() : _react2.default.createElement(
             'div',
-            { className: 'react-confirm-alert-body' },
+            { className: warning===true ? 'react-confirm-alert-body warning' : 'react-confirm-alert-body'},
             title && _react2.default.createElement(
               'h2',
               null,

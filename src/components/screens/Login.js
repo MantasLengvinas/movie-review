@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import $ from 'jquery'
 
 import UserStore from '../../stores/UserStore'
+import { confirmAlert } from '../customLib/confirmation-alert'; // Import
+import '../customLib/confirmation-alert/index.css';
 
 class LoginScreen extends Component {
 
@@ -33,6 +35,7 @@ handleSubmit(event) {
     })
       .then((res) => res.json())
       .then(async (data) => {
+        $('#loader,#loading-text').toggleClass('loaded');
         if(data.success){
           localStorage.setItem("isLoggedIn", true);
           localStorage.setItem("email", data.email);
@@ -43,10 +46,16 @@ handleSubmit(event) {
           window.location.replace("/");
         }
         else{
-          this.setState({
-            loginError: "Entered credentials are incorrect!"
-          })
-          $('#loader,#loading-text').toggleClass('loaded');
+          confirmAlert({
+            title: 'Failed to sign in!',
+            message: 'Entered credentials are incorrect!',
+            warning: true,
+            buttons: [
+              {
+                label: 'Okay'
+              }
+            ]
+          });
         }
       })
       .catch((err) => {

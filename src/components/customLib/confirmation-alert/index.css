@@ -40,6 +40,9 @@ body.react-confirm-alert-body-element {
     border: solid 1px rgb(161, 161, 161);
     border-radius: 10px;
     box-shadow: 0 20px 75px rgba(0, 0, 0, 0.13);
+  }
+
+  .warning {
     color: rgb(224, 0, 0);
   }
   

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import $ from 'jquery'
 
+import { confirmAlert } from '../customLib/confirmation-alert'; // Import
+import '../customLib/confirmation-alert/index.css';
+
 class RegisterScreen extends Component {
   constructor(props){
     super(props);
@@ -34,13 +37,30 @@ handleSubmit(event) {
     .then(async (data) => {
       if(data.success){
         $('#loader,#loading-text').toggleClass('loaded');
-        window.location.replace("/login?success");
+          confirmAlert({
+            title: 'Success!',
+            message: 'Registration was successfull. Please sign in.',
+            warning: false,
+            buttons: [
+              {
+                label: 'Okay',
+                onClick: () => window.location.replace('/login?success')
+              }
+            ]
+        });
       }
       else{
         $('#loader,#loading-text').toggleClass('loaded');
-        this.setState({
-          registrationErrors: "User with given credentials already exists"
-        })
+          confirmAlert({
+            title: 'Failed to sign up!',
+            message: 'User with given credentials already exists',
+            warning: true,
+            buttons: [
+              {
+                label: 'Okay'
+              }
+            ]
+          });
       }
     })
     .catch((err) => {

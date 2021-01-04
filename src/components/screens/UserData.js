@@ -100,6 +100,7 @@ class UserData extends Component {
         confirmAlert({
             title: 'Delete your account?',
             message: 'Deleted account cannot be restored!',
+            warning: true,
             buttons: [
               {
                 label: 'Yes',

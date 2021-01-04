@@ -109,7 +109,7 @@ class Reviews extends Component {
                     </div>
                 </div>
                 <div className="row mt-5">
-                    {reviews}
+                    {reviews.length === 0 ? "You have not done any reviews yet" : reviews}
                 </div>
             </div>
         );

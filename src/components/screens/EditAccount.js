@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import $ from "jquery"
 
+import { confirmAlert } from '../customLib/confirmation-alert'; // Import
+import '../customLib/confirmation-alert/index.css';
+
 class EditAccount extends Component {
 
     constructor(props){
@@ -63,19 +66,33 @@ class EditAccount extends Component {
                 .then(async (data) => {
                     if(data.success){
                         $('#loader,#loading-text').toggleClass('loaded');
-                        this.setState({
-                            response: "Details have been updated successfully! Please sign in."
-                        })
-                        setInterval(() => {
-                            localStorage.clear();
-                            window.location.replace("/");
-                        }, 2000)
+                        confirmAlert({
+                            title: 'Success!',
+                            message: 'Details have been updated successfully! Please sign in.',
+                            warning: false,
+                            buttons: [
+                              {
+                                label: 'Okay',
+                                onClick: () => setInterval(() => {
+                                    localStorage.clear();
+                                    window.location.replace("/");
+                                }, 100)
+                              }
+                            ]
+                        });
                     }
                     else{
                         $('#loader,#loading-text').toggleClass('loaded');
-                        this.setState({
-                            response: "Failed to update.. try again later."
-                        })
+                        confirmAlert({
+                            title: 'Failed!',
+                            message: 'Unable to update your account. Please try again later',
+                            warning: true,
+                            buttons: [
+                              {
+                                label: 'Okay'
+                              }
+                            ]
+                        });
                     }
                 })
                 .catch((err) => {
