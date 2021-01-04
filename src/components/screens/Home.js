@@ -7,7 +7,7 @@ class HomeScreen extends Component {
   constructor(props){
     super(props);
 
-    this.key = Math.floor(Math.random() * (499 - 1 + 1)) + 1;
+    this.page = Math.floor(Math.random() * (499 - 1 + 1)) + 1;
 
     this.state = {
       movieData: [],
@@ -19,7 +19,7 @@ class HomeScreen extends Component {
   }
 
   getMoviesData() {
-    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=530c56d37a8200c3cb27b16bcc2e444c`)
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=530c56d37a8200c3cb27b16bcc2e444c&page=${this.page}`)
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("movieDataString", JSON.stringify(data))
