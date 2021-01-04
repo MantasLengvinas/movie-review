@@ -9,7 +9,6 @@ class Rating extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        rButtons :[],
         currentR : ""
       }
       this.renderRatings = this.renderRatings.bind(this);
@@ -28,30 +27,24 @@ class Rating extends React.Component {
     renderRatings(){
       var { rscale } = this.props;
       var {currentR} = this.state;
-      let rButtons = [];
-      for(var i = 1; i <= rscale; i++){
-        rButtons.push(<label key={i}>
-              <input type="radio" value={i} name="rad" className="invisible" checked={currentR === "value"+i} onChange={this.handleOptionChange} /><span style={{"color": "#fff1b5"}} className="fa fa-star"></span>
-            </label>
-        );
-      }
-      this.setState({
-        rButtons : rButtons
-      })
     }
-    render() {
-      
-      var { rButtons } = this.state;
-      return (
+    render() {    
+    return (
         <>
         <div className="form-group">
             <label for="exampleReview" className="color-white">Your rating:</label>
-            <div className="rating_scale">
-                {rButtons}
+            <div className="rating_scale" id="rating-container">
+                <fieldset class="rating">
+                    <input key={5} type="radio" id="star5" name="rating" value="5" onChange={this.handleOptionChange} /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input key={4} type="radio" id="star4" name="rating" value="4" onChange={this.handleOptionChange} /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input key={3} type="radio" id="star3" name="rating" value="3" onChange={this.handleOptionChange} /><label class = "full" for="star3" title="Not bad - 3 stars"></label>
+                    <input key={2} type="radio" id="star2" name="rating" value="2" onChange={this.handleOptionChange} /><label class = "full" for="star2" title="Could be better - 2 stars"></label>
+                    <input key={1} type="radio" id="star1" name="rating" value="1" onChange={this.handleOptionChange} /><label class = "full" for="star1" title="Awful - 1 star"></label>
+                </fieldset>
           </div>
         </div>
         </>
-      );
+    );
     }
 }
   
@@ -118,8 +111,12 @@ class Movie extends Component{
     handleSubmit(event) {
         $('#loader,#loading-text').toggleClass('loaded');
         let data = {
-            "email": localStorage.getItem("email"),
             "movieId": this.props.match.params.movieID,
+            "movieTitle": this.state.movie.original_title,
+            "movieReleased": this.state.movie.release_date,
+            "movieOverview": this.state.movie.overview,
+            "movieThumbnail": this.state.movie.backdrop_path,
+            "email": localStorage.getItem("email"),
             "review": this.state.review,
             "rating": rating
         };
@@ -235,7 +232,7 @@ class Movie extends Component{
                             <h4>What other people think about this movie</h4>
                         </div>
                         <div className="w-100"></div>
-                        <div className="col-md mt-3" style={{"max-height": "350px", "overflow": "auto"}}>
+                        <div className="col-md mt-3" style={{"max-height": "350px", "overflowY": "auto"}}>
                             {reviewList}
                         </div>
                     </div>
@@ -250,7 +247,7 @@ class Movie extends Component{
                                     <div className="col-md-8">
                                         <div className="form-group">
                                             <label for="exampleReview" className="color-white">Opinion about the movie</label>
-                                            <input type="textarea" name="review" className="form-control" rows="5" id="exampleInputEmail" aria-describedby="review" placeholder="I love this movie.." value={this.state.review} onChange={this.handleChange} required />
+                                            <input type="textarea" name="review" className="form-control mt-2" rows="5" id="opinion" aria-describedby="review" placeholder="I love this movie.." value={this.state.review} onChange={this.handleChange} required />
                                         </div>
                                     </div>
                                     <div className="col-md-4 d-flex justify-content-center">

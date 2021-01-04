@@ -35,6 +35,7 @@ class Reviews extends Component {
         .catch((err) => {
             console.log(err);
           });
+
     }
 
     componentDidMount(){
@@ -42,29 +43,22 @@ class Reviews extends Component {
     }
 
     render(){
-
-        let allMoviesFull = JSON.parse(localStorage.getItem("movieDataString"));
-        let allMovies = allMoviesFull.results;
-
         let reviews = this.state.reviewsData.map(review => {
-            var currMovie = allMovies.find(m => {
-                return m.id.toString() === review.movieID
-            })
             return(
-            <div key={currMovie.id} className="row w-100 border border-light p-3">
+            <div key={review.movieID} className="row w-100 border border-light p-3">
                 <div className="col-md-5">
-                <img src={`https://image.tmdb.org/t/p/w500${currMovie.backdrop_path}`} alt="movie" className="m-1" style={{'height':"330px", 'width':"450px"}}srcset=""/>
+                <img src={`https://image.tmdb.org/t/p/w500${review.movieThumbnail}`} alt="image_not_found" className="m-1" style={{'height':"330px", 'width':"450px"}}/>
                 </div>
-                <div className="col-md-7" style={{"height": "340px", "overflow-y": "auto"}}>
+                <div className="col-md-7" style={{"height": "340px", "overflowY": "auto"}}>
                     <div className="col m-1 ml-1">
                         <div className="col w-100">
                             <h3 className="black-outline">
-                                {currMovie.original_title}
+                                {review.movieTitle}
                             </h3>
                         </div>
                         <div className="col w-100">
                             <label htmlFor="">
-                                Release date: <i>{currMovie.release_date}</i>
+                                Release date: <i>{review.movieReleased}</i>
                             </label>
                         </div>
                         <div className="col w-100 mt-4">
@@ -72,7 +66,7 @@ class Reviews extends Component {
                                 <h4>Overview</h4>
                             </label>
                             <p>
-                                <i>{currMovie.overview}</i>
+                                <i>{review.movieOverview}</i>
                             </p>
                         </div>
                         <div className="col w-100 pt-3 border-top border-light">

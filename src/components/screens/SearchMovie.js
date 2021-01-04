@@ -39,7 +39,7 @@ class SearchMovie extends Component {
             <Link to={`/movie/${movie.id}`}>
                 <div className="row border border-dark">
                     <div className="col-md-4">
-                        <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="not_found" className="m-3" style={{'height':"180px", 'width':"280px"}}srcset=""/>
+                        <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="not_found" className="m-3" style={{'height':"180px", 'width':"280px"}}/>
                     </div>
                     <div className="col-md-8">
                         <div className="col m-1 ml-1">
