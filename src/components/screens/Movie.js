@@ -193,7 +193,7 @@ class Movie extends Component{
                             {review.username}
                         </h4>
                         <p>
-                            Rating: <i>{review.rating}/5 stars</i>
+                            <span className="fa fa-star mr-1" style={{"font-size": "23px", "color": "yellow"}}></span><i>{review.rating}/5</i>
                         </p>
                     </div>
                     <div className="col-md-8">

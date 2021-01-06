@@ -82,7 +82,7 @@ class Reviews extends Component {
                                 <h5>You have rated this movie</h5>
                             </label>
                             <p>
-                                <i>{review.rating}/5 stars</i>
+                                <span className="fa fa-star mr-1" style={{"font-size": "23px", "color": "yellow"}}></span><i>{review.rating}/5</i>
                             </p>
                         </div>
 

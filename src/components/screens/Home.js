@@ -51,15 +51,20 @@ class HomeScreen extends Component {
 
     
 
-    const movieList = this.state.movieData.map(movie =>
-      <div className="carousel-item" key={movie.id}>
-        <Link to={`/movie/${movie.id}`}>
-          <img className="d-block w-100" src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="image_not_found" />
-        </Link>
-        <div className="carousel-caption d-none d-md-block">
-          <h2 className="black-outline">{movie.original_title}</h2>
+    const movieList = this.state.movieData.map(movie => {
+      if(movie.backdrop_path !== null){
+        return (
+        <div className="carousel-item" key={movie.id}>
+          <Link to={`/movie/${movie.id}`}>
+            <img className="d-block w-100" src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="image_not_found" />
+          </Link>
+          <div className="carousel-caption d-none d-md-block">
+            <h2 className="black-outline">{movie.original_title}</h2>
+          </div>
         </div>
-      </div>
+        );
+      }
+    }
     );
 
     return (
