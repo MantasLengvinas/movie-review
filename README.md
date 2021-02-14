@@ -2,7 +2,7 @@
 
 `Computer architecture project VU MIF ISI 2020`
 
-***In this project I was responsible for front-end development and communication between between back-end and front-end***
+***In this project I was responsible for front-end development and communication between back-end and front-end***
 
 **This project was developed using:**
   - Java, Spring boot (back-end)
